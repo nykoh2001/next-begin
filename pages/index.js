@@ -29,7 +29,7 @@ export default function Home({ results }) {
 									title: movie.original_title,
 								},
 							}}
-							as={`/movies/${movie.id}`}
+							as={`/movies/${movie.original_title}/${movie.id}`}
 						>
 							<div key={movie.id} className="movie">
 								<img
