@@ -1,18 +1,44 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export default function Home({ results }) {
+	// const router = useRouter();
+	// const onClick = (id, title) => {
+	// 	router.push(
+	// 		{
+	// 			pathname: `/movies/${id}`,
+	// 			query: {
+	// 				title,
+	// 			},
+	// 		},
+	// 		`/movies/${id}`
+	// 	);
+	// };
 	return (
 		<div>
 			<h1>Home</h1>
 			<div className="container">
 				{results?.map((movie) => {
 					return (
-						<div key={movie.id} className="movie">
-							<img
-								src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-							/>
-							<h4>{movie.original_title}</h4>
-						</div>
+						<Link
+							legacyBehavior
+							href={{
+								pathname: `/movies/${movie.id}`,
+								query: {
+									title: movie.original_title,
+								},
+							}}
+							as={`/movies/${movie.id}`}
+						>
+							<div key={movie.id} className="movie">
+								<img
+									src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+								/>
+
+								<h4>{movie.original_title}</h4>
+							</div>
+						</Link>
 					);
 				})}
 			</div>
